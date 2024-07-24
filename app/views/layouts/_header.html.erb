@@ -1,0 +1,38 @@
+<header>
+  <div class="p-3 text-center bg-white border-bottom">
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-lg-2 col-sm-4 col-4">
+					<%= link_to(root_path, class: "float-start") do %>
+						<%= image_tag("https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png", height: 35) %>
+					<% end %>
+        </div>
+
+        <div class="order-lg-last col-lg-5 col-sm-8 col-8">
+          <div class="d-flex float-end">
+						<%= link_to(login_path, class: "me-1 border rounded py-1 px-3 nav-link d-flex align-items-center") do %>
+							<i class="fas fa-user-alt m-1 me-md-2"></i>
+							<p class="d-none d-md-block mb-0">Log in</p>
+						<% end %>
+            <%= link_to("/cart", class: "border rounded py-1 px-3 nav-link d-flex align-items-center") do %>
+							<i class="fas fa-shopping-cart m-1 me-md-2"></i>
+							<p class="d-none d-md-block mb-0">My cart</p>
+						<% end %>
+          </div>
+        </div>
+
+        <div class="col-lg-5 col-md-12 col-12">
+          <div class="input-group float-center">
+            <div class="form-outline">
+              <input type="search" id="form1" class="form-control" />
+              <label class="form-label" for="form1">Search</label>
+            </div>
+            <button type="button" class="btn btn-primary shadow-0">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
