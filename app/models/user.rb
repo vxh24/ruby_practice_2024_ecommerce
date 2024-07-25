@@ -1,16 +1,18 @@
 class User < ApplicationRecord
-  validates :name, presence: true, length: { maximum: Settings.name.max_length }
+  has_many :orders
+  has_many :user_comments
+  has_many :receiver_infos
+
+  validates :name, presence: true, length: {maximum: Settings.name.max_length}
   validates :email, presence: true,
                     length: {maximum: Settings.email.max_length},
                     format: {with: Regexp.new(Settings.email.valid_email_regex)}
 
-  validates :password, presence: true,length: {minimum: Settings.password.min_length}
+  validates :password, presence: true,
+                       length: {minimum: Settings.password.min_length},
+                       allow_nil: true
 
   has_secure_password
-
-  has_many :orders
-  has_many :user_comments
-  has_many :receiver_infos
 
   attr_accessor :activation_token, :remember_token
 
@@ -19,23 +21,25 @@ class User < ApplicationRecord
   class << self
     def User.digest string
       cost = if ActiveModel::SecurePassword.min_cost
-        BCrypt::Engine::MIN_COST
-        else
-          BCrypt::Engine.cost
-        end
-          BCrypt::Password.create string, cost: cost
+               BCrypt::Engine::MIN_COST
+             else
+               BCrypt::Engine.cost
+             end
+      BCrypt::Password.create string, cost => cost
     end
 
     def new_token
       SecureRandom.urlsafe_base64
+    end
   end
-  end
+
   def authenticated? attribute, token
     digest = send "#{attribute}_digest"
-
     return false unless digest
+
     BCrypt::Password.new(digest).is_password? token
   end
+
   def activate
     update_columns activated: true, activated_at: Time.zone.now
   end
