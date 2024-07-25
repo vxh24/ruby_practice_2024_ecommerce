@@ -1,3 +1,13 @@
 <% provide :title, @user.name %>
-<%= @user.name %>
-<%= @user.email %>
+<div style="height: 300px">
+  <h1 style="text-align: center; margin-top: 20px">Profile</h1>
+
+  <div class="profile-info" style="text-align: center">
+    <p><strong>Name:</strong> <%= @user.name %></p>
+    <p><strong>Email:</strong> <%= @user.email %></p>
+  </div>
+
+  <div class="text-center">
+    <%= link_to "Back to home", "/", class: "btn btn-primary" %>
+  </div>
+</div>

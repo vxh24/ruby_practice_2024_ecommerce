@@ -2,7 +2,13 @@ class Admin::CategoriesController < Admin::BaseController
   before_action :set_category, only: %i(show edit update destroy)
 
   def index
-    @categories = Category.search_by_name(params[:query]).sort_by_name
+    if params[:query].blank?
+      @categories = Category.all
+    else
+      @categories = Category.search_by_name(params[:query]).sort_by_name
+    end
+
+    @pagy, @paginated_categories = pagy @categories, limit: Settings.digist.digist_10
   end
 
   def show; end

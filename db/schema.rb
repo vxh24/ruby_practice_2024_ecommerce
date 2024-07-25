@@ -38,8 +38,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_05_013749) do
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
-<<<<<<< HEAD
-=======
 
   create_table "carts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id"
@@ -50,7 +48,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_05_013749) do
     t.index ["user_id", "product_id"], name: "index_carts_on_user_id_and_product_id", unique: true
   end
 
->>>>>>> 805f11e (cart)
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -71,9 +68,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_05_013749) do
   create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "receiver_info_id", null: false
-    t.decimal "total_price", precision: 10
+    t.decimal "total_price", precision: 10, scale: 2
     t.datetime "date_place_order"
     t.string "status"
+    t.string "payment_option"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["receiver_info_id"], name: "index_orders_on_receiver_info_id"

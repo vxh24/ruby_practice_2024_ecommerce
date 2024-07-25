@@ -17,6 +17,11 @@
   </div>
 
   <div class="mb-3">
+    <%= f.label "Stock Quantity", class: "form-label" %>
+    <%= f.number_field :stock_quantity, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
     <%= f.label "Category", class: "form-label" %>
     <%= f.select :category_id, category_options, { prompt: 'Select a category' }, class: "form-control" %>
   </div>

@@ -34,12 +34,13 @@
           <th><span class="las la-sort"></span>Name</th>
           <th><span class="las la-sort"></span>Description</th>
           <th><span class="las la-sort"></span>Price</th>
+          <th><span class="las la-sort"></span>Stock_Quantity</th>
           <th><span class="las la-sort"></span>Category</th>
           <th><span class="las la-sort"></span>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <% @products.each do |product| %>
+        <% @paginated_products.each do |product| %>
           <tr>
             <td><%= product.id %></td>
             <td>
@@ -49,7 +50,8 @@
             </td>
             <td><%= product.name %></td>
             <td><%= truncate(product.description, :length => 75) %></td>
-            <td><%= product.price %></td>
+            <td><%= number_to_currency(product.price) %></td>
+            <td><%= product.stock_quantity %></td>
             <td><%= product.category&.name %></td>
             <td>
               <span class="icon-container">
@@ -66,5 +68,8 @@
         <% end %>
       </tbody>
     </table>
+    <section id="pagination" class="section-p1">
+      <%== pagy_bootstrap_nav @pagy %>
+    </section>
   </div>
 </main>

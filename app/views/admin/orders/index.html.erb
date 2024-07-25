@@ -1,0 +1,95 @@
+<main>
+  <h1 class="text-center mb-3 pt-3">Order Management</h1>
+
+  <div class="d-flex align-items-center justify-content-between mb-3 order-filter-form">
+    <%= form_with(url: admin_orders_path, method: :get, local: true, class: "d-flex form-order") do %>
+      <div class="order-search-group" style="flex: 1; margin-right: 400px; display: flex; margin-top: 25px;">
+        <input type="text" name="query" class="form-control" placeholder="Search by receiver name" value="<%= params[:query] %>" style="width: 100%;">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+      </div>
+
+      <div class="order-filter-group d-flex align-items-center">
+        <div class="form-group mr-2">
+          <label for="status_select" class="mr-2">Status:</label>
+          <select name="status" class="form-control" id="status_select">
+            <option value="">All Statuses</option>
+            <option value="pending" <%= 'selected' if params[:status] == 'pending' %>>Pending</option>
+            <option value="shipping" <%= 'selected' if params[:status] == 'shipping' %>>Shipping</option>
+            <option value="completed" <%= 'selected' if params[:status] == 'completed' %>>Completed</option>
+            <option value="cancelled" <%= 'selected' if params[:status] == 'cancelled' %>>Cancelled</option>
+          </select>
+        </div>
+
+        <div class="form-group mr-2">
+          <label for="start_date" class="mr-2">Start Date:</label>
+          <input type="date" name="start_date" class="form-control" value="<%= params[:start_date] %>">
+        </div>
+
+        <div class="form-group mr-2">
+          <label for="end_date" class="mr-2">End Date:</label>
+          <input type="date" name="end_date" class="form-control" value="<%= params[:end_date] %>">
+        </div>
+
+        <div class="form-group" style="margin-top: 25px">
+          <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <br>
+  <div>
+    <div class="p-3 mb-2 bg-light text-success">
+      <% if params[:query].present? %>
+        <p>Showing results for "<%= params[:query] %>": <%= @orders.count %> results found.</p>
+      <% else %>
+        <p>Showing all orders: <%= @orders.count %> orders available.</p>
+      <% end %>
+    </div>
+    <table width="100%">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th style="width: 12%"><span class="las la-sort"></span>Name</th>
+          <th style="width: 12%"><span class="las la-sort"></span>Phone</th>
+          <th style="width: 20%"><span class="las la-sort"></span>Address</th>
+          <th><span class="las la-sort"></span>Place Order Date</th>
+          <th><span class="las la-sort"></span>Payment Option</th>
+          <th><span class="las la-sort"></span>Amount</th>
+          <th><span class="las la-sort"></span>Status</th>
+          <th><span class="las la-sort"></span>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @paginated_orders.each do |order| %>
+          <tr>
+            <td><%= order.id %></td>
+            <td><%= order.receiver_info.name %></td>
+            <td><%= order.receiver_info.phone %></td>
+            <td><%= truncate(order.receiver_info.address, :length => 75) %></td>
+            <td><%= order.date_place_order %></td>
+            <td><%= order.payment_option %></td>
+            <td><%= number_to_currency(order.total_price) %></td>
+            <% if order.status == "pending" %>
+              <td class="unknown"><%= order.status %></td>
+            <% elsif order.status == "shipping" %>
+              <td class="pending"><%= order.status %></td>
+            <% elsif order.status == "completed" %>
+              <td class="completed"><%= order.status %></td>
+            <% elsif order.status == "cancelled" %>
+              <td class="cancelled"><%= order.status %></td>
+            <% else %>
+              <td class="unknown"><%= order.status %></td>
+            <% end %>
+            <td>
+              <%= link_to "Xem chi tiết".html_safe, admin_order_path(order) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%== pagy_bootstrap_nav @pagy %>
+  </div>
+</main>
