@@ -1,16 +1,16 @@
 <header>
-  <section id="header">
-    <a href="#"><img src="https://i.postimg.cc/x8ncvFjr/logo.png"></a>
-    <div>
-      <ul id="navbar">
-        <li><%= link_to "Home", "/" %></li>
-        <li><%= link_to "Shop", "/products" %></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><%= link_to "Cart", "/carts",class: "fal fa-shopping-bag",id: "lg-bag" %>
-          <span class="quantity">0</span>
-        </li>
+<section id="header">
+  <a href="#"><img src="https://i.postimg.cc/x8ncvFjr/logo.png"></a>
+  <div>
+    <ul id="navbar">
+      <li><%= link_to "Home", "/" %></li>
+      <li><%= link_to "Shop", "/products" %></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><%= link_to "", "/carts",class: "fal fa-shopping-bag",id: "lg-bag" %>
+        <span class="quantity">0</span>
+      </li>
         <li class="dropdown">
           <% if logged_in? %>
           <a href="#" class="dropbtn">Hello, <%= current_user.name %></a>

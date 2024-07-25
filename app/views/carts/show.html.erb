@@ -20,7 +20,7 @@
       <% @carts.each do |cart1| %>
       <tr id="cart-item-<%= cart1.product_id %>">
         <td>
-          <%= link_to "", destroy_carts_path(product_id: cart1.product_id), method: :delete, data: { turbo_frame: "cart-items" }, class: "fa-regular fa-circle-xmark" , style: "text-decoration: none; color: red; font-size:20px"%>
+          <%= link_to "", destroy_carts_path(product_id: cart1.product_id), method: :delete, data: { turbo_frame: "cart-items" }, class: "fa-regular fa-circle-xmark" %>
         </td>
         <td><img src="./img/products/f1.jpg" alt=""></td>
         <td><%= cart1.product.name %></td>
@@ -29,7 +29,7 @@
           <%= form_with url: update_carts_path, method: :patch, data: { turbo_frame: "cart-items" } do |form| %>
             <%= form.hidden_field :product_id,value: cart1.product_id, class:"input-quantity" %>
             <%= form.number_field :quantity,value: cart1.quantity, min: 1, class:"input-quantity" %>
-            <%= form.submit "Update", class: "btn-update" %>
+            <%= form.submit "Save", class: "btn-update" %>
           <% end %>
         </td>
         <td>$<%= cart1.product.price * cart1.quantity %></td>

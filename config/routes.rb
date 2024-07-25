@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   delete "/logout",to:"sessions#destroy"
   get "carts/destroy", to: "carts#destroy", as: "destroy_carts"
   get "carts/add", to: "carts#add", as: "add_carts"
+  get "products/add", to: "carts#add", as: "product_carts"
   patch "carts/update", to: "carts#update", as: "update_carts"
   get "carts", to: "carts#show"
   get "/signup", to: "users#new"
@@ -28,4 +29,6 @@ Rails.application.routes.draw do
       delete "destroy"
     end
   end
+  get "checkout", to: "checkout#new", as: "new_checkout"
+  post "checkout", to: "checkout#create", as: "create_checkout"
 end

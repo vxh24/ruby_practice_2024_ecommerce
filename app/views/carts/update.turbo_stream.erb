@@ -10,7 +10,7 @@
       <%= form_with url: update_carts_path, method: :patch, data: { turbo_frame: 'cart-items' } do |form| %>
         <%= form.hidden_field :product_id, value: @cart.product_id %>
         <%= form.number_field :quantity, value: @cart.quantity, min: 1 %>
-        <%= form.submit "Update" %>
+        <%= form.submit "Save", class: "btn-update" %>
       <% end %>
     </td>
     <td>$<%= @cart.product.price * @cart.quantity %></td>

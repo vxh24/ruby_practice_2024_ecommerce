@@ -3,7 +3,6 @@ class User < ApplicationRecord
   has_many :user_comments
   has_many :receiver_infos
   has_many :carts, dependent: :destroy
-
   validates :name, presence: true, length: {maximum: Settings.name.max_length}
   validates :email, presence: true,
                     length: {maximum: Settings.email.max_length},
@@ -49,7 +48,9 @@ class User < ApplicationRecord
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
   end
-
+  def send_order_success_email
+    UserMailer.order_success(self).deliver_now
+  end
   def remember
     self.remember_token = User.new_token
     update_column :remember_digest, User.digest(remember_token)
@@ -58,7 +59,9 @@ class User < ApplicationRecord
   def forget
     update_column :remember_digest, nil
   end
-
+  def has_address?
+    receiver_info.present?
+  end
   private
 
   def downcase_email
