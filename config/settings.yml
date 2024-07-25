@@ -11,3 +11,10 @@ password:
 image:
   max_width: 50
   max_height: 50
+digist:
+  digist_10: 10
+price:
+  price_0: 0
+  price_5000: 5000
+  price_10000: 10000
+  price_20000: 20000

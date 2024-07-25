@@ -1,0 +1,51 @@
+<% provide :title, "Products" %>
+
+<section id="categories" class="section-p1">
+  <h2>Shop by Category</h2>
+  <div class="category-container">
+    <% Category.all.each do |category| %>
+      <%= link_to category.name, products_path(category_id: category.id) %>
+    <% end %>
+  </div>
+</section>
+<header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
+  <strong class="d-block py-2"><%= pluralize(@total_count, "product") %></strong>
+  <div class="ms-auto">
+  <%= form_with url: products_path, method: :get, local: true do %>
+    <%= select_tag :price_filter, options_for_select([
+      ["Dưới 5000 USD", "under_5000"],
+      ["5000 - 10000 USD", "5000_to_10000"],
+      ["10000 - 20000 USD", "10000_to_20000"],
+      ["Trên 20000 USD", "over_20000"]
+    ]), class: "form-select d-inline-block w-auto border pt-1"  %>
+    <%= submit_tag "Lọc", class: "fa fa-search" %>
+  <% end %>
+</div>
+</header>
+<section id="products" class="section-p1">
+  <div class="pro-container">
+    <% @paginated_products.each do |product| %>
+    <div class="pro-item" onclick="window.location.href=product_path(product);">
+      <% if product.image.attached? %>
+        <%= image_tag product.image, class: "card-img-top" %>
+      <% end %>
+        <div class="des">
+            <span><%= product.category.name %></span>
+            <h5><%= link_to product.name, product_path(product) %></h5>
+              <div class="star">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <h4>$<%= product.price %></h4>
+        </div>
+        <a href="#"><i class="fa-solid fa-shopping-cart  cart" ></i></a>
+    </div>
+    <% end %>
+  </div>
+</section>
+<section id="pagination" class="section-p1">
+  <%== pagy_bootstrap_nav @pagy %>
+</section>

@@ -20,4 +20,22 @@ class Product < ApplicationRecord
   scope :search_by_name, lambda {|query|
     where("name LIKE ?", "%#{query}%")
   }
+  scope :by_category, -> (category) {
+    category.present? ? where(category: category) : all
+  }
+  scope :under_5000, -> {
+    where(price: Settings.price.price_0..Settings.price.price_5000)
+  }
+
+  scope :between_5000_and_10000, -> {
+    where(price: Settings.price.price_5000..Settings.price.price_10000)
+  }
+
+  scope :between_10000_and_20000, -> {
+    where(price: Settings.price.price_10000..Settings.price.price_20000)
+  }
+
+  scope :over_20000, -> {
+    where("price > ?", Settings.price.price_20000)
+  }
 end
