@@ -4,9 +4,11 @@ class User < ApplicationRecord
                     length: {maximum: Settings.email.max_length},
                     format: {with: Regexp.new(Settings.email.valid_email_regex)}
 
+  validates :password, presence: true,length: {minimum: Settings.password.min_length}
+
   has_secure_password
 
-  attr_accessor :activation_token
+  attr_accessor :activation_token, :remember_token
 
   before_save :downcase_email
   before_create :create_activation_digest
@@ -38,11 +40,22 @@ class User < ApplicationRecord
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
   end
+
+  def remember
+    self.remember_token = User.new_token
+    update_column :remember_digest, User.digest(remember_token)
+  end
+
+  def forget
+    update_column :remember_digest, nil
+  end
+
   private
 
   def downcase_email
     email.downcase!
   end
+
   def create_activation_digest
     self.activation_token = User.new_token
     self.activation_digest = User.digest(activation_token)

@@ -10,10 +10,17 @@
 
         <div class="order-lg-last col-lg-5 col-sm-8 col-8">
           <div class="d-flex float-end">
-						<%= link_to(login_path, class: "me-1 border rounded py-1 px-3 nav-link d-flex align-items-center") do %>
-							<i class="fas fa-user-alt m-1 me-md-2"></i>
-							<p class="d-none d-md-block mb-0">Log in</p>
-						<% end %>
+            <% if logged_in? %>
+  						<%= link_to(logout_path, class: "me-1 border rounded py-1 px-3 nav-link d-flex align-items-center") do %>
+  							<i class="fas fa-user-alt m-1 me-md-2"></i>
+  							<p class="d-none d-md-block mb-0">Log out</p>
+  						<% end %>
+            <% else %>
+              <%= link_to(login_path, class: "me-1 border rounded py-1 px-3 nav-link d-flex align-items-center") do %>
+                <i class="fas fa-user-alt m-1 me-md-2"></i>
+                <p class="d-none d-md-block mb-0">Log in</p>
+              <% end %>
+            <% end %>
             <%= link_to("/cart", class: "border rounded py-1 px-3 nav-link d-flex align-items-center") do %>
 							<i class="fas fa-shopping-cart m-1 me-md-2"></i>
 							<p class="d-none d-md-block mb-0">My cart</p>
