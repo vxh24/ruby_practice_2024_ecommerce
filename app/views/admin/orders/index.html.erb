@@ -1,6 +1,8 @@
 <main>
   <h1 class="text-center mb-3 pt-3">Order Management</h1>
-
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
   <div class="d-flex align-items-center justify-content-between mb-3 order-filter-form">
     <%= form_with(url: admin_orders_path, method: :get, local: true, class: "d-flex form-order") do %>
       <div class="order-search-group" style="flex: 1; margin-right: 400px; display: flex; margin-top: 25px;">
