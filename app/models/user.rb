@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_many :orders
   has_many :user_comments
   has_many :receiver_infos
-
+  has_many :carts, dependent: :destroy
   validates :name, presence: true, length: {maximum: Settings.name.max_length}
   validates :email, presence: true,
                     length: {maximum: Settings.email.max_length},

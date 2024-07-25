@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :find_category
+  before_action :set_product, only: :show
   def index
     if params[:query].present?
       @products = @products.search_by_name(params[:query])
@@ -8,9 +9,10 @@ class ProductsController < ApplicationController
     if params[:price_filter].present? && session[:query].present?
       @products = filter_by_price(@products.search_by_name(session[:query]), params[:price_filter])
     end
-
     @pagy, @paginated_products = pagy @products, items: Settings.digist.digist_10
     @total_count = @products.size
+  end
+  def show
   end
 
   private
@@ -21,7 +23,13 @@ class ProductsController < ApplicationController
     flash[:danger] = "Product not found!"
     redirect_to root_url
   end
+  def set_product
+    @product = Product.find_by id: params[:id]
+    return if @product
 
+    flash[:danger] = "Product not found!"
+    redirect_to root_url
+  end
   def filter_by_price(products, price_filter)
     case price_filter
     when "under_5000"

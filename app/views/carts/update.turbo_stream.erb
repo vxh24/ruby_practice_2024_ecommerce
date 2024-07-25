@@ -1,0 +1,21 @@
+<%= turbo_stream.replace "cart-item-#{params[:product_id]}" do %>
+  <tr id="cart-item-<%= @cart.product_id %>">
+    <td>
+      <%= link_to "", destroy_carts_path(product_id: @cart.product_id), method: :delete, class: 'fa-regular fa-circle-xmark' %>
+    </td>
+    <td><img src="./img/products/f1.jpg" alt=""></td>
+    <td><%= @cart.product.name %></td>
+    <td>$<%= @cart.product.price %></td>
+    <td>
+      <%= form_with url: update_carts_path, method: :patch, data: { turbo_frame: 'cart-items' } do |form| %>
+        <%= form.hidden_field :product_id, value: @cart.product_id %>
+        <%= form.number_field :quantity, value: @cart.quantity, min: 1 %>
+        <%= form.submit "Update" %>
+      <% end %>
+    </td>
+    <td>$<%= @cart.product.price * @cart.quantity %></td>
+  </tr>
+<% end %>
+<%= turbo_stream.replace "subtotal" do %>
+  <%= render partial: "cart_totals", locals: { total: @total } %>
+<% end %>
