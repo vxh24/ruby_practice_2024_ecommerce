@@ -6,3 +6,16 @@
 .icon-hover:hover i {
   color: #3b71ca !important;
 }
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px;
+  }
+}
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}

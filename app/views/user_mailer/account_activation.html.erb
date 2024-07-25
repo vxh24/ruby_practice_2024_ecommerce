@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="header">
+      <h1>Welcome to Our Service!</h1>
+    </div>
+    <div class="content">
+      <p>Hello <%= @user.name %>,</p>
+      <p>Thank you for registering with us. To complete your registration, please click the button below to activate your account.</p>
+      <%= link_to "Activate", edit_account_activation_url(id: @user.activation_token, email: @user.email), class: 'button' %>
+      <p>If you did not create this account, you can ignore this email.</p>
+    </div>
+    <div class="footer">
+      <p>© [Year] Our Company. All rights reserved.</p>
+      <p>If you have any questions, feel free to <%= link_to "mailto:support@example.com","#" %>contact us</a>.</p>
+    </div>
+</div>
