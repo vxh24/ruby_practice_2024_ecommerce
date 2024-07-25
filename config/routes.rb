@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  namespace :admin, path: "admin" do
+    root "home#admin_dashboard"
 
-  # Defines the root path route ("/")
+    resources :products
+  end
+
   root "home#index"
 
   get "product", to: "home#product"
