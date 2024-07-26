@@ -1,0 +1,3 @@
+Hi <%= @user.name %>,
+Welcome to the Ecommerce! Click on the link below to activate youraccount:
+<%= edit_account_activation_url(id: @user.activation_token, email:@user.email) %>

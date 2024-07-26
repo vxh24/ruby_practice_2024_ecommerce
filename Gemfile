@@ -15,6 +15,9 @@ gem "rails-ujs"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
+gem "config"
+gem "bcrypt", "3.1.18"
+gem 'dotenv-rails', groups: [:development, :test]
 gem "tzinfo-data", platforms: %i(mingw mswin x64_mingw jruby)
 
 gem "font-awesome-rails"

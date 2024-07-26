@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
 
   get "/signup", to: "users#new"
+  post "/signup", to: "users#create"
+  resources :users, only: %i(new edit create show)
+  resources :account_activations, only: :edit
 end
