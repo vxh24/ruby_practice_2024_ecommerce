@@ -1,22 +1,24 @@
+<% provide :title, "Login" %>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <form class="border border-light p-5">
+      <%= form_for(:session, html: { class: "border border-light p-5" })do |f| %>
         <p class="h3 mb-4 text-center">LOGIN</p>
         <div data-mdb-input-init class="form-outline mb-4">
-          <input type="email" id="form2Example1" class="form-control" />
+          <%= f.email_field :email, for:"form2Example1", class: "form-control" %>
           <label class="form-label" for="form2Example1">Email address</label>
         </div>
 
         <div data-mdb-input-init class="form-outline mb-4">
-          <input type="password" id="form2Example2" class="form-control" />
+          <%= f.password_field :password, for:"form2Example1", class: "form-control" %>
           <label class="form-label" for="form2Example2">Password</label>
         </div>
 
         <div class="row mb-4">
           <div class="col d-flex justify-content-center align-items-center">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+              <%= f.check_box :remember_me, for:"form2Example31", class: "form-check-input" %>
+              <!-- <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked /> -->
               <label class="form-check-label" for="form2Example31"> Remember me </label>
             </div>
           </div>
@@ -26,12 +28,12 @@
           </div>
         </div>
 
-        <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Log in</button>
+        <%= f.submit "Log in", data: { mdb_button_init: true, mdb_ripple_init: true }, class: "btn btn-primary btn-block mb-4" %>
+        <% end %>
 
         <div class="text-center">
           <p>Not a member? <%= link_to "Register", "/signup", class: "text-decoration-none" %></p>
         </div>
-      </form>
     </div>
   </div>
 </div>

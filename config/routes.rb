@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   get "product", to: "home#product"
   get "cart", to: "home#cart"
 
-  get "/login", to: "sessions#new"
+  get "/login",to: "sessions#new"
+  post "/login",to: "sessions#create"
+    get '/logout',to: 'sessions#destroy'
+  delete "/logout",to:"sessions#destroy"
 
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"
