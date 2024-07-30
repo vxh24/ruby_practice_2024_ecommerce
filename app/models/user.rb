@@ -8,6 +8,10 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  has_many :orders
+  has_many :user_comments
+  has_many :receiver_infos
+
   attr_accessor :activation_token, :remember_token
 
   before_save :downcase_email
