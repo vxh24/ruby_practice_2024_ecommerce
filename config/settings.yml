@@ -7,3 +7,7 @@ email:
 
 password:
   min_length: 6
+
+image:
+  max_width: 50
+  max_height: 50

@@ -1,0 +1,39 @@
+<h1 class="text-center mb-3 pt-3">Product Info</h1>
+
+<div class="container">
+  <div class="mb-3">
+    <strong>Name:</strong>
+    <p><%= @product.name %></p>
+  </div>
+
+  <div class="mb-3">
+    <strong>Description:</strong>
+    <p><%= @product.description %></p>
+  </div>
+
+  <div class="mb-3">
+    <strong>Price:</strong>
+    <p><%= number_to_currency(@product.price) %></p>
+  </div>
+
+  <div class="mb-3">
+    <strong>Category:</strong>
+    <p><%= @product.category&.name || "N/A" %></p>
+  </div>
+
+  <% if @product.image.attached? %>
+    <div class="mb-3">
+      <strong>Image:</strong><br>
+      <img src="<%= url_for(@product.image) %>" alt="Product Image" style="max-width: 300px;"/>
+    </div>
+  <% else %>
+    <div class="mb-3">
+      <strong>Image:</strong>
+      <p>No image uploaded.</p>
+    </div>
+  <% end %>
+</div>
+
+<div class="text-center">
+  <%= link_to "Back to products", admin_products_path, class: "btn btn-secondary back-to-products" %>
+</div>

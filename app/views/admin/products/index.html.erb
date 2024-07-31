@@ -1,0 +1,70 @@
+<main>
+  <h1 class="text-center mb-3 pt-3">Product Management</h1>
+
+  <div class="d-flex align-items-center justify-content-between">
+    <div class="btn-add-product">
+      <%= link_to 'Add Product', new_admin_product_path, class: "btn btn-primary" %>
+    </div>
+    <div class="input-group search-input-form" style="width: 30%">
+      <%= form_with(url: admin_products_path, method: :get, local: true) do %>
+        <div class="d-flex">
+          <input type="text" name="query" class="form-control" placeholder="Search products..." aria-label="Search products">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <br>
+  <div>
+    <div class="p-3 mb-2 bg-light text-success">
+      <% if params[:query].present? %>
+        <p>Showing results for "<%= params[:query] %>": <%= @products.count %> results found.</p>
+      <% else %>
+        <p>Showing all products: <%= @products.count %> products available.</p>
+      <% end %>
+    </div>
+    <table width="100%">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th><span class="las la-sort"></span>Image</th>
+          <th><span class="las la-sort"></span>Name</th>
+          <th><span class="las la-sort"></span>Description</th>
+          <th><span class="las la-sort"></span>Price</th>
+          <th><span class="las la-sort"></span>Category</th>
+          <th><span class="las la-sort"></span>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= product.id %></td>
+            <td>
+              <% if product.image.attached? %>
+                <%= image_tag product.image.variant(:display).processed %>
+              <% end %>
+            </td>
+            <td><%= product.name %></td>
+            <td><%= truncate(product.description, :length => 75) %></td>
+            <td><%= product.price %></td>
+            <td><%= product.category&.name %></td>
+            <td>
+              <span class="icon-container">
+                <%= link_to "<i class='fas fa-eye' title='Show'></i>".html_safe, admin_product_path(product), class: "text-decoration-none" %>
+              </span>
+              <span class="icon-container">
+                <%= link_to "<i class='fas fa-pen icon-yellow' title='Edit'></i>".html_safe, edit_admin_product_path(product), class: "text-decoration-none" %>
+              </span>
+              <span class="icon-container">
+                <%= button_to "<i class='fas fa-trash-alt' title='Delete'></i>".html_safe, admin_product_path(product), method: :delete, data: { turbo_confirm: 'Do you want to delete this product?' }, class: "btn btn-link text-danger p-0" %>
+              </span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</main>
