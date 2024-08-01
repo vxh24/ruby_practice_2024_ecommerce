@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     root "home#admin_dashboard"
 
     resources :products
+    resources :categories
   end
 
   root "home#index"

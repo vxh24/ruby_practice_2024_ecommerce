@@ -6,37 +6,37 @@
     <div class="side-menu">
       <ul>
         <li>
-          <%= link_to "/admin", class: current_page?('/admin') ? 'active' : '' do %>
+          <%= link_to "/admin", class: current_page?("/admin") ? "active" : "" do %>
             <span class="las la-home"></span>
             <small>Dashboard</small>
           <% end %>
         </li>
         <li>
-          <%= link_to "#", class: current_page?('#') ? 'active' : '' do %>
+          <%= link_to "#", class: current_page?("#") ? "active" : "" do %>
             <span class="las la-envelope"></span>
             <small>Mailbox</small>
           <% end %>
         </li>
         <li>
-          <%= link_to "#", class: current_page?('#') ? 'active' : '' do %>
+          <%= link_to "#", class: current_page?("#") ? "active" : "" do %>
             <span class="las la-user"></span>
             <small>Users</small>
           <% end %>
         </li>
         <li>
-          <%= link_to admin_products_path, class: current_page?('/admin/products') ? 'active' : '' do %>
+          <%= link_to admin_products_path, class: current_page?("/admin/products") ? "active" : "" do %>
             <span class="las la-box"></span>
             <small>Products</small>
           <% end %>
         </li>
         <li>
-          <%= link_to "#", class: current_page?('#') ? 'active' : '' do %>
+          <%= link_to admin_categories_path, class: current_page?("/admin/categories") ? "active" : "" do %>
             <span class="las la-clipboard-list"></span>
             <small>Categories</small>
           <% end %>
         </li>
         <li>
-           <%= link_to "#", class: current_page?('#') ? 'active' : '' do %>
+           <%= link_to "#", class: current_page?("#") ? "active" : "" do %>
             <span class="las la-shopping-cart"></span>
             <small>Orders</small>
           <% end %>
