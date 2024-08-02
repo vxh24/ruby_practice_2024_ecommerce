@@ -26,7 +26,7 @@ categories = 10.times.map do |n|
   Category.create!(name: "Category-#{n + 1}")
 end
 
-30.times do |n|
+100.times do |n|
   name = "Product-#{n + 1}"
   description = "This is the description for #{name}."
   price = rand(10..1000) * 1000

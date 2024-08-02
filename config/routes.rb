@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-  get "product", to: "home#product"
   get "cart", to: "home#cart"
 
   get "/login",to: "sessions#new"
@@ -20,4 +19,5 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
   resources :users, only: %i(new edit create show)
   resources :account_activations, only: :edit
+  resources :products
 end
