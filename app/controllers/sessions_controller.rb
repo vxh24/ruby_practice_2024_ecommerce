@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :auth_user_path, only: :new
+
   def new; end
 
   def create
@@ -21,12 +23,22 @@ class SessionsController < ApplicationController
 
   private
 
+  def auth_user_path
+    return if current_user.nil?
+
+    redirect_to current_user.present? && current_user.admin? ? admin_root_path : root_path
+  end
+
   def handle_session_management user
     forwarding_url = session[:forwarding_url]
     reset_session
     params[:session][:remember_me] == "1" ? remember(user) : forget(user)
     log_in user
-    redirect_to forwarding_url || user
+    if user.admin?
+      redirect_to admin_root_path
+    else
+      redirect_to forwarding_url || user
+    end
   end
 
   def handle_inactive_user
