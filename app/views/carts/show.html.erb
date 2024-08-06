@@ -1,0 +1,52 @@
+<section id="page-header" class="about-header">
+  <h1>#Shop Cart</h1>
+  <p>Buy What You Want.</p>
+</section>
+
+<section id="cart" class="section-p1">
+  <%= turbo_frame_tag "cart-items" do %>
+  <table width="100%">
+    <thead>
+      <tr>
+        <td>Remove</td>
+        <td>Image</td>
+        <td>Product</td>
+        <td>Price</td>
+        <td>Quantity</td>
+        <td>Subtotal</td>
+      </tr>
+    </thead>
+    <tbody id="cart-items">
+      <% @carts.each do |cart1| %>
+      <tr id="cart-item-<%= cart1.product_id %>">
+        <td>
+          <%= link_to "", destroy_carts_path(product_id: cart1.product_id), method: :delete, data: { turbo_frame: "cart-items" }, class: "fa-regular fa-circle-xmark" %>
+        </td>
+        <td><img src="./img/products/f1.jpg" alt=""></td>
+        <td><%= cart1.product.name %></td>
+        <td>$<%= cart1.product.price %></td>
+        <td>
+        <%= form_with url: update_carts_path, method: :patch, data: { turbo_frame: "cart-items" } do |form| %>
+          <%= form.hidden_field :product_id,value: cart1.product_id %>
+          <%= form.number_field :quantity,value: cart1.quantity, min: 1 %>
+          <%= form.submit "Update" %>
+        <% end %>
+        </td>
+        <td>$<%= cart1.product.price * cart1.quantity %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+</section>
+
+<section id="cart-add" class="section-p1">
+<div id="coupon">
+    <h3>Apply Coupon</h3>
+    <div id="coupon">
+      <input type="text" placeholder="Enter Your Coupon">
+      <button class="normal">Apply</button>
+    </div>
+  </div>
+  <%= render "cart_totals" %>
+</section>
