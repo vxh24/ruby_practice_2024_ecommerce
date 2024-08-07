@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   belongs_to :user
   belongs_to :receiver_info
   has_many :order_details
-
+  accepts_nested_attributes_for :receiver_info
   enum status: {
     pending: "pending",
     shipping: "shipping",

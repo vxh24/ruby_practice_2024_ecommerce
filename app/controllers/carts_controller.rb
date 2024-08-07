@@ -27,7 +27,7 @@ class CartsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html{redirect_to carts_path}
+      format.html { redirect_to carts_path }
       format.turbo_stream
     end
   end

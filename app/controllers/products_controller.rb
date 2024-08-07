@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
     if params[:price_filter].present? && session[:query].present?
       @products = filter_by_price(@products.search_by_name(session[:query]), params[:price_filter])
     end
-    @pagy, @paginated_products = pagy @products, items: Settings.digist.digist_10
+    @pagy, @paginated_products = pagy @products, limit: Settings.digist.digist_10
     @total_count = @products.size
   end
   def show

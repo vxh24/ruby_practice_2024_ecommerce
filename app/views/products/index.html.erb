@@ -40,7 +40,12 @@
               </div>
               <h4>$<%= product.price %></h4>
         </div>
-        <a href="#"><i class="fa-solid fa-shopping-cart  cart" ></i></a>
+        <!-- <a href="#"><i class="fa-solid fa-shopping-cart  cart" ></i></a> -->
+        <%= form_with model: @cart, url: add_carts_path(product_id: product.id), method: :post, class: "fa-solid fa-shopping-cart cart", local: true do |form| %>
+          <%= form.hidden_field :product_id, value: product.id %>
+          <%= form.hidden_field :quantity, value: 1, min: 1 %>
+          <%= form.submit "" %>
+        <% end %>
     </div>
     <% end %>
   </div>
