@@ -33,6 +33,8 @@ module SessionsHelper
   end
 
   def forget user
+    return if user.nil?
+
     user.forget
     cookies.delete :user_id
     cookies.delete :remember_token

@@ -23,16 +23,8 @@
     <h6>Home / <%= @product.category.name %></h6>
     <h4><%= @product.name %></h4>
     <h2>$<%= @product.price %></h2>
-    <select>
-      <option>Select Size</option>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-      <option>XXL</option>
-    </select>
     <%= form_with model: @cart, url: add_carts_path(product_id: @product.id), method: :post, local: true do |form| %>
-      <%= form.hidden_field :product_id, value: @product_id %>
+      <%= form.hidden_field :product_id, value: @product_id, %>
       <%= form.number_field :quantity, value: 1, min: 1 %>
       <%= form.submit "Add to Cart" %>
     <% end %>

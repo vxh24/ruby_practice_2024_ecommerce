@@ -1,0 +1,69 @@
+<h1 class="text-center mb-3 pt-3">Order Detail</h1>
+
+<table width="100%" style="margin-bottom:20px">
+  <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order_details.each do |detail| %>
+      <tr>
+        <td><%= detail.product.name %></td>
+        <td><%= detail.quantity %></td>
+        <td><%= number_to_currency(detail.price) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="container">
+  <div class="mb-3 d-flex">
+    <strong>Code Order:</strong>&nbsp;&nbsp;
+    <p>DH<%= @order.id %></p>
+  </div>
+
+  <div class="mb-3 d-flex">
+    <strong>Name:</strong>&nbsp;&nbsp;
+    <p><%= @order.receiver_info.name %></p>
+  </div>
+
+  <div class="mb-3 d-flex">
+    <strong>Phone:</strong>&nbsp;&nbsp;
+    <p><%= @order.receiver_info.phone %></p>
+  </div>
+
+  <div class="mb-3 d-flex">
+    <strong>Address:</strong>&nbsp;&nbsp;
+    <p><%= @order.receiver_info.address %></p>
+  </div>
+
+  <div class="mb-3 d-flex">
+    <strong>Date Place Order:</strong>&nbsp;&nbsp;
+    <p><%= @order.date_place_order %></p>
+  </div>
+
+  <div class="mb-3 d-flex">
+    <strong>Payment Option:</strong>&nbsp;&nbsp;
+    <p><%= @order.payment_option %></p>
+  </div>
+
+  <div class="mb-3 d-flex">
+    <strong>Amount:</strong>&nbsp;&nbsp;
+    <p><%= number_to_currency(@order.total_price) %></p>
+  </div>
+
+  <div class="mb-3 d-flex">
+    <%= form_with(model: [:admin, @order], local: true, html: {style: "margin: 0; display: flex; align-items: center"}) do |form| %>
+      <strong><%= form.label :status, "Status:" %></strong>&nbsp;&nbsp;
+      <%= form.select :status, Order.statuses.keys.map { |status| [status.humanize, status] }, class: "form-control d-inline-block", style: "width: auto;" %>
+      <%= form.submit "Update", class: "btn btn-primary ml-2", style: "margin-left: 20px" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="text-center">
+  <%= link_to "Back to orders", admin_orders_path, class: "btn btn-secondary back-to-products" %>
+</div>

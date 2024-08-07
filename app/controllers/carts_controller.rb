@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  before_action :require_login, only: :show
   before_action :set_cart, only: [:update, :destroy]
 
   def show
@@ -26,7 +27,7 @@ class CartsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to carts_path }
+      format.html{redirect_to carts_path}
       format.turbo_stream
     end
   end
@@ -48,7 +49,15 @@ class CartsController < ApplicationController
     flash[:danger] = "Cart not found"
     redirect_to root_url
   end
+
   def calculate_total
     Cart.total_for_user(current_user.id)
+  end
+
+  def require_login
+    unless logged_in?
+      flash[:alert] = "Please login."
+      redirect_to login_url
+    end
   end
 end
