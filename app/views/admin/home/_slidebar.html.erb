@@ -36,7 +36,7 @@
           <% end %>
         </li>
         <li>
-           <%= link_to "#", class: current_page?("#") ? "active" : "" do %>
+          <%= link_to admin_orders_path, class: current_page?("/admin/orders") ? "active" : "" do %>
             <span class="las la-shopping-cart"></span>
             <small>Orders</small>
           <% end %>

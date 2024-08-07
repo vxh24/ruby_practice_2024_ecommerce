@@ -1,46 +1,46 @@
 <header>
-<section id="header">
-  <a href="#"><img src="https://i.postimg.cc/x8ncvFjr/logo.png"></a>
-  <div>
-    <ul id="navbar">
-      <li><%= link_to "Home", "/" %></li>
-      <li><%= link_to "Shop", "/products" %></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><%= link_to "", "/carts",class: "fal fa-shopping-bag",id: "lg-bag" %>
-        <span class="quantity">0</span>
-      </li>
-      <li class="dropdown">
-        <% if logged_in? %>
-        <a href="#" class="dropbtn">My Account</a>
-          <div class="dropdown-content">
-            <a href="profile.html">Profile</a>
-            <a href="settings.html">Settings</a>
-            <%= link_to "Log out", "/logout" %>
-          </div>
-        <% else %>
-          <a href="#" class="dropbtn">My Account</a>
-          <div class="dropdown-content">
-            <%= link_to "Sign up", "/signup" %>
-            <%= link_to "Log in", "/login" %>
-          </div>
-        <% end %>
-      </li>
-        <li id="search-container">
-            <%= form_with(url: products_path, method: :get, local: true) do %>
-                <input type="text" name="query" class="form-control" placeholder="Search products..." aria-label="Search products">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            <% end %>
+  <section id="header">
+    <a href="#"><img src="https://i.postimg.cc/x8ncvFjr/logo.png"></a>
+    <div>
+      <ul id="navbar">
+        <li><%= link_to "Home", "/" %></li>
+        <li><%= link_to "Shop", "/products" %></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><%= link_to "Cart", "/carts",class: "fal fa-shopping-bag",id: "lg-bag" %>
+          <span class="quantity">0</span>
         </li>
-      <li><a href="#" id="close"><i class="far fa-times"></i></a></li>
-    </ul>
-  </div>
-  <div id="mobile">
-    <a href="cart.html" ><i class="fal fa-shopping-bag"></i>
-      <span class="quantity">0</span>
-    </a>
-    <i id="bar" class="fas fa-outdent"></i>
-  </div>
-</section>
+        <li class="dropdown">
+          <% if logged_in? %>
+          <a href="#" class="dropbtn">Hello, <%= current_user.name %></a>
+            <div class="dropdown-content">
+              <%= link_to "Profile", user_path(current_user) %>
+              <%= link_to "Order History", "#" %>
+              <%= link_to "Log out", "/logout" %>
+            </div>
+          <% else %>
+            <a href="#" class="dropbtn">My Account</a>
+            <div class="dropdown-content">
+              <%= link_to "Sign up", "/signup" %>
+              <%= link_to "Log in", "/login" %>
+            </div>
+          <% end %>
+        </li>
+        <li id="search-container">
+          <%= form_with(url: products_path, method: :get, local: true) do %>
+            <input type="text" name="query" class="form-control" placeholder="Search products..." aria-label="Search products">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          <% end %>
+        </li>
+        <li><a href="#" id="close"><i class="far fa-times"></i></a></li>
+      </ul>
+    </div>
+    <div id="mobile">
+      <a href="cart.html" ><i class="fal fa-shopping-bag"></i>
+        <span class="quantity">0</span>
+      </a>
+      <i id="bar" class="fas fa-outdent"></i>
+    </div>
+  </section>
 </header>

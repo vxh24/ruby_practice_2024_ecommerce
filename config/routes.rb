@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
     resources :products
     resources :categories
+    resources :orders, only: %i(index show update)
   end
   root "home#index"
 
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
   get "carts", to: "carts#show"
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"
-  resources :users, only: %i(new edit create show)
+  resources :users, only: %i(new edit create show update)
   resources :account_activations, only: :edit
   resources :products
   resources :carts, only: [:show] do

@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500;600&display=swap");
 
 :root {
-  --main-color: #22BAA0;
-  --color-dark: #34425A;
-  --text-grey: #B0B0B0;
+  --main-color: #22baa0;
+  --color-dark: #34425a;
+  --text-grey: #b0b0b0;
 }
 
 .icon-yellow {
@@ -24,7 +24,7 @@
   text-decoration: none;
   list-style-type: none;
   box-sizing: border-box;
-  font-family: 'Merriweather', sans-serif;
+  font-family: "Merriweather", sans-serif;
 }
 
 #menu-toggle {
@@ -98,7 +98,7 @@ side-head span {
   background: #b30000;
 }
 
-.side-menu ul{
+.side-menu ul {
   padding-left: 0rem;
 }
 
@@ -118,8 +118,8 @@ side-head span {
   height: 80px;
   width: 80px;
   display: inline-block;
-  margin: 0 auto .5rem auto;
-  border: 3px solid #899DC1;
+  margin: 0 auto 0.5rem auto;
+  border: 3px solid #899dc1;
 }
 
 .profile h4 {
@@ -128,7 +128,7 @@ side-head span {
 }
 
 .profile small {
-  color: #899DC1;
+  color: #899dc1;
   font-weight: 600;
 }
 
@@ -146,7 +146,7 @@ side-head span {
 }
 
 .side-menu a.active {
-  background: #2B384E;
+  background: #2b384e;
 }
 
 .side-menu a.active span,
@@ -162,35 +162,34 @@ side-head span {
 
 .side-menu a span,
 .side-menu a small {
-  color: #899DC1;
+  color: #899dc1;
 }
 
-#menu-toggle:checked~.sidebar {
+#menu-toggle:checked ~ .sidebar {
   width: 60px;
 }
 
-#menu-toggle:checked~.sidebar .side-header span {
+#menu-toggle:checked ~ .sidebar .side-header span {
   display: none;
 }
 
-#menu-toggle:checked~.main-content {
+#menu-toggle:checked ~ .main-content {
   margin-left: 60px;
   width: calc(100% - 60px);
 }
 
-#menu-toggle:checked~.main-content header {
+#menu-toggle:checked ~ .main-content header {
   left: 60px;
 }
 
-#menu-toggle:checked~.sidebar .profile,
-#menu-toggle:checked~.sidebar .side-menu a small {
+#menu-toggle:checked ~ .sidebar .profile,
+#menu-toggle:checked ~ .sidebar .side-menu a small {
   display: none;
 }
 
-#menu-toggle:checked~.sidebar .side-menu a span {
+#menu-toggle:checked ~ .sidebar .side-menu a span {
   font-size: 1.3rem;
 }
-
 
 .main-content {
   margin-left: 165px;
@@ -231,7 +230,7 @@ header {
 
 .header-menu {
   justify-content: flex-end;
-  padding-top: .5rem;
+  padding-top: 0.5rem;
 }
 
 .header-menu label,
@@ -257,7 +256,7 @@ header {
   right: -5px;
   top: -5px;
   color: #fff;
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 500;
 }
 
@@ -275,8 +274,8 @@ header {
 
 .user span:last-child {
   display: inline-block;
-  margin-left: .3rem;
-  font-size: .8rem;
+  margin-left: 0.3rem;
+  font-size: 0.8rem;
 }
 
 main {
@@ -285,7 +284,7 @@ main {
 
 .page-header {
   padding: 1.3rem 1rem;
-  background: #E9edf2;
+  background: #e9edf2;
   border-bottom: 1px solid #dee2e8;
 }
 
@@ -302,7 +301,7 @@ main {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 2rem;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   margin-bottom: 2rem;
 }
 
@@ -332,12 +331,12 @@ main {
 
 .card-progress small {
   color: #777;
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 600;
 }
 
 .card-indicator {
-  margin: .7rem 0rem;
+  margin: 0.7rem 0rem;
   height: 10px;
   border-radius: 4px;
   background: #e9edf2;
@@ -386,8 +385,8 @@ main {
 
 .add span {
   display: inline-block;
-  margin-right: .6rem;
-  font-size: .9rem;
+  margin-right: 0.6rem;
+  font-size: 0.9rem;
   color: #666;
 }
 
@@ -405,8 +404,8 @@ select {
   border-radius: 3px;
   display: inline-block;
   width: 75px;
-  padding: 0rem .5rem;
-  margin-right: .8rem;
+  padding: 0rem 0.5rem;
+  margin-right: 0.8rem;
   color: #666;
 }
 
@@ -445,7 +444,7 @@ table thead th {
   padding: 1rem 0rem;
   text-align: left;
   color: #444;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 table thead th:first-child {
@@ -461,7 +460,7 @@ table tbody td:first-child {
   padding-left: 1rem;
   color: var(--main-color);
   font-weight: 600;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 table tbody tr {
@@ -474,7 +473,7 @@ table tbody tr {
 }
 
 .client-img {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
   border: 2px solid #b0b0b0;
   height: 45px;
   width: 45px;
@@ -482,7 +481,7 @@ table tbody tr {
 
 .client-info h4 {
   color: #555;
-  font-size: .95rem;
+  font-size: 0.95rem;
 }
 
 .client-info small {
@@ -492,7 +491,7 @@ table tbody tr {
 .actions span {
   display: inline-block;
   font-size: 1.5rem;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .paid {
@@ -501,9 +500,9 @@ table tbody tr {
   font-weight: 600;
   color: var(--main-color);
   background: #e5f8ed;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 20px;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -532,28 +531,28 @@ table tbody tr {
     width: 100%;
   }
 
-  #menu-toggle:checked~.sidebar {
+  #menu-toggle:checked ~ .sidebar {
     left: 0;
   }
 
-  #menu-toggle:checked~.sidebar {
+  #menu-toggle:checked ~ .sidebar {
     width: 165px;
   }
 
-  #menu-toggle:checked~.sidebar .side-header span {
+  #menu-toggle:checked ~ .sidebar .side-header span {
     display: inline-block;
   }
 
-  #menu-toggle:checked~.sidebar .profile,
-  #menu-toggle:checked~.sidebar .side-menu a small {
+  #menu-toggle:checked ~ .sidebar .profile,
+  #menu-toggle:checked ~ .sidebar .side-menu a small {
     display: block;
   }
 
-  #menu-toggle:checked~.sidebar .side-menu a span {
+  #menu-toggle:checked ~ .sidebar .side-menu a span {
     font-size: 1.7rem;
   }
 
-  #menu-toggle:checked~.main-content header {
+  #menu-toggle:checked ~ .main-content header {
     left: 0px;
   }
 
@@ -586,7 +585,7 @@ form {
 
 .form-control:focus {
   border-color: #80bdff;
-  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 .back-to-products {
@@ -605,11 +604,63 @@ form {
   background-color: #5a6268;
 }
 
-.btn-add-product{
+.btn-add-product {
   width: 10%;
   margin-left: 20px;
 }
 
-.search-input-form{
+.search-input-form {
   margin-right: 20px;
+}
+
+.logout-link {
+  text-decoration: none;
+  color: #000;
+}
+
+.logout-link:hover {
+  color: #cc0000;
+}
+
+.pending {
+  color: orange;
+}
+
+.completed {
+  color: green;
+}
+
+.cancelled {
+  color: red;
+}
+
+.unknown {
+  color: gray;
+}
+
+.order-filter-form {
+  justify-content: space-between;
+}
+
+.order-search-group {
+  width: 50%;
+}
+
+.order-filter-group {
+  display: flex;
+  align-items: center;
+}
+
+.order-filter-group .form-group {
+  margin-right: 10px;
+}
+
+.order-filter-group .btn-primary {
+  margin-left: 10px;
+}
+
+.form-order {
+  max-width: 100%;
+  margin: 0 auto;
+  border-radius: 5px;
 }

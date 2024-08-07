@@ -3,13 +3,13 @@ class Admin::ProductsController < Admin::BaseController
   before_action :load_categories, only: %i(new edit)
 
   def index
-    @products = Product.all
-
-    if params[:query].present?
-      @products = @products.search_by_name(params[:query])
+    if params[:query].blank?
+      @products = Product.all
+    else
+      @products = Product.search_by_name(params[:query]).sort_by_name
     end
 
-    @products = @products.sort_by_name
+    @pagy, @paginated_products = pagy @products, limit: Settings.digist.digist_10
   end
 
   def show; end
@@ -74,6 +74,7 @@ class Admin::ProductsController < Admin::BaseController
     params.require(:product).permit(:name,
                                     :description,
                                     :price,
+                                    :stock_quantity,
                                     :category_id,
                                     :image)
   end

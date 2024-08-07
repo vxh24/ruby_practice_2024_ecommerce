@@ -17,12 +17,19 @@ class Product < ApplicationRecord
                              }
 
   scope :sort_by_name, ->{order(name: :asc)}
+
   scope :search_by_name, lambda {|query|
-    where("name LIKE ?", "%#{query}%")
+    if query.present?
+      where("name LIKE ?", "%#{query}%")
+    else
+      all.sort_by_name
+    end
   }
+
   scope :by_category, -> (category) {
     category.present? ? where(category: category) : all
   }
+
   scope :under_5000, -> {
     where(price: Settings.price.price_0..Settings.price.price_5000)
   }
