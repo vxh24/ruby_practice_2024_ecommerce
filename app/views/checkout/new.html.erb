@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="py-5 text-center">
+    <h1>Checkout</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 order-2">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class=text-muted>Your Cart</span>
+      </h4>
+
+      <div class="card">
+        <% @carts.each do |cart| %>
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+            <h6 class="my-0"><%= cart.product.name %></h6>
+            <small class="text-muted">Quantity: <%= cart.quantity %></small>
+          </div>
+          <span class="text-muted">$<%= cart.product.price * cart.quantity %></span>
+        </li>
+        <% end %>
+      </div>
+
+      <div class="card-footer d-flex justify-content-between">
+        <span>Total (USD)</span>
+        <strong>$<%= @total %></strong>
+      </div>
+
+      <form class="card p-2">
+        <div class="input-group">
+          <div class="input-group-append">
+            <%= link_to "Back to cart", carts_path, class: "btn btn-secondary" %>
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+    <div class="col-md-8 order-1">
+      <h4 class="mb-3">Billing Address</h4>
+      <%= form_with model: @order, url: create_checkout_path, method: :post, local: true do |form| %>
+          <%= form.fields_for :receiver_info do |receiver_form| %>
+            <%= receiver_form.hidden_field :user_id, value:  @current_user.id %>
+            <div class="input-group col mb-4">
+              <%= receiver_form.text_field :name, placeholder: "Username", class: "form-control" %>
+            </div>
+            <div class="mb-4">
+              <label for="Address">Phone</label>
+              <%= receiver_form.text_field :phone, placeholder: "Phone", class: "form-control" %>
+            </div>
+            <div class="mb-4">
+              <label for="Address">Adress</label>
+              <%= receiver_form.text_field :address, placeholder: "Address", class: "form-control" %>
+            </div>
+        <% end %>
+        <div class="row">
+          <div class="col">
+            <div class="form-check">
+              <!-- <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked> -->
+              <label class="form-check-label" for="flexRadioDefault1">
+                Payment on delivery (Default)
+              </label>
+            </div>
+          </div>
+            <hr class="mb-4">
+            <div class="d-grid gap-2">
+              <%= form.hidden_field :user_id, value:  @current_user.id %>
+              <%= form.hidden_field :total_price, value:  @total %>
+              <%= form.hidden_field :status, value: "pending" %>
+              <%= form.submit "Place Order", class: "normal1" %>
+            </div>
+          </div>
+      <% end %>
+    </div>
+</div>
+<hr class="mb-4">
+

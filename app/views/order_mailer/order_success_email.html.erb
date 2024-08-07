@@ -1,0 +1,13 @@
+<!-- app/views/order_mailer/order_success_email.html.erb -->
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Order Confirmation</h1>
+    <p>Hello <%= @user.name %>,</p>
+    <p>Thank you for your order! Your order number is <%= @order.id %>.</p>
+    <p>Total Price: <%= @order.total_price %></p>
+    <p>Status: <%= @order.status %></p>
+    <p>We will notify you once your order is shipped.</p>
+    <p>Thank you for shopping with us!</p>
+  </body>
+</html>
