@@ -34,7 +34,7 @@
     <%= form_with model: @cart, url: add_carts_path(product_id: @product.id), method: :post, local: true do |form| %>
       <%= form.hidden_field :product_id, value: @product_id %>
       <%= form.number_field :quantity, value: 1, min: 1 %>
-      <%= form.submit "Add to Cart" %>
+      <%= form.submit "Add to Cart", class: "normal1" %>
     <% end %>
     <h4>Product Details</h4>
     <span><%= @product.description %></span>

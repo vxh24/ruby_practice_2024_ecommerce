@@ -53,7 +53,6 @@ class CartsController < ApplicationController
   def calculate_total
     Cart.total_for_user(current_user.id)
   end
-
   def require_login
     unless logged_in?
       flash[:alert] = "Please login."

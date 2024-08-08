@@ -19,14 +19,13 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def update
-    respond_to do |format|
-      if @order.update(order_params)
-        format.html{redirect_to admin_orders_path(@order), notice: "Order was successfully updated."}
-        format.json{render :show, status: :ok, location: @order}
-      else
-        format.html{render :show, status: :unprocessable_entity}
-        format.json{render json: @order.errors, status: :unprocessable_entity}
-      end
+    if @order.update(order_params)
+      OrderMailer.order_cancelled_email(@order).deliver_now if @order.cancelled?
+      OrderMailer.order_shipping_email(@order).deliver_now if @order.shipping?
+      flash[:success] = "Order was successfully updated."
+      redirect_to admin_orders_path
+    else
+      render :show
     end
   end
 
@@ -41,7 +40,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def get_order_detail
-    @order_details = OrderDetail.where(order_id: @order.id)
+    @order_details = OrderDetail.for_order(@order.id)
   end
 
   def order_params

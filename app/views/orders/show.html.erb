@@ -1,0 +1,68 @@
+<section id="page-header" class="about-header">
+  <h1 style="color: #000">Order Detail</h1>
+</section>
+
+<section id="cart-add" class="section-p1">
+  <div id="coupon">
+      <h3>Receiver's information</h3>
+    <div class="mb-3 d-flex">
+      <strong>Code Order:</strong>&nbsp;&nbsp;
+      <p>DH<%= @order.id %></p>
+    </div class="text_field">
+  <%= form_with model: @receiver_info, url: order_update_path, method: :patch, local: true do |form| %>
+    <%= form.hidden_field :id , value: @order.receiver_info.id %>
+    <%= form.hidden_field :user_id , value: @order.receiver_info.user_id %>
+    <div class="text_field">
+      <strong>Name:</strong>&nbsp;&nbsp;
+      <%= form.text_field :name, value: @order.receiver_info.name %>
+    </div>
+
+    <div class="text_field">
+      <strong>Phone:</strong>&nbsp;&nbsp;
+      <%= form.text_field :phone, value: @order.receiver_info.phone %>
+    </div>
+    <div class="text_field">
+      <strong>Address:</strong>&nbsp;&nbsp;
+      <%= form.text_field :address, value: @order.receiver_info.address %>
+    </div>
+    <div class="mb-3 d-flex">
+      <strong>Date Place Order:</strong>&nbsp;&nbsp;
+      <p><%= @order.date_place_order.strftime("%d-%m-%Y") %></p>
+    </div>
+
+    <div class="mb-3 d-flex">
+      <strong>Payment Option:</strong>&nbsp;&nbsp;
+      <p><%= @order.payment_option %></p>
+    </div>
+    <%= form.submit "Save changes", class: "normal1" %>
+    <% end %>
+  </div>
+  <div id="subtotal">
+    <h3>Product Detail</h3>
+    <table>
+      <tr>
+        <td>Product</td>
+        <td>Quantity</td>
+        <td>Price</td>
+      </tr>
+      <% @order_details.each do |orderdt| %>
+      <tr>
+        <td><%= orderdt.product.name %></td>
+        <td><%= orderdt.quantity %></td>
+        <td><%= number_to_currency(orderdt.price) %></td>
+      </tr>
+      <% end %>
+      <tr>
+        <td><strong></strong></td>
+        <td><strong>Amount</strong></td>
+        <td><strong><%= number_to_currency(@order.total_price) %></strong></td>
+      </tr>
+    </table>
+    <%= link_to "Return order", order_index_path, class: "normal1" %>
+    <% if @order.status == "pending" %>
+      <%= link_to "Cancell order", order_update_status_path(@order, status: "cancelled"), method: :patch, class: "normal1" %>
+    <% elsif @order.status == "cancelled" %>
+      <%= link_to "Repurchase", order_update_status_path(@order, status: "cancelled"), method: :patch, class: "normal1" %>
+    <% end %>
+  </div>
+</section>
