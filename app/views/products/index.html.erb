@@ -3,7 +3,7 @@
   <h2>Shop by Category</h2>
   <div class="category-container">
     <% Category.all.each do |category| %>
-      <%= link_to category.name, products_path(category_id: category.id) %>
+      <%= link_to category.name, products_path(category_id: category.id), class: "normal1" %>
     <% end %>
   </div>
 </section>
@@ -17,7 +17,7 @@
       ["10000 - 20000 USD", "10000_to_20000"],
       ["Trên 20000 USD", "over_20000"]
     ]), class: "form-select d-inline-block w-auto border pt-1"  %>
-    <%= submit_tag "Lọc", class: "fa fa-search" %>
+    <%= submit_tag "Lọc", class: "normal1" %>
   <% end %>
 </div>
 </header>

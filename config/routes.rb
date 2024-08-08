@@ -31,4 +31,9 @@ Rails.application.routes.draw do
   end
   get "checkout", to: "checkout#new", as: "new_checkout"
   post "checkout", to: "checkout#create", as: "create_checkout"
+  get "orders", to: "orders#index", as: "order_index"
+  get "orders/show/:id", to: "orders#show", as: "order_show"
+  patch "orders/show/:id", to: "orders#update_info", as: "order_update"
+  get "orders/update_status/:id", to: "orders#update_status", as: "order_update_status"
+  get "orders/destroy/:id", to: "orders#destroy", as: "order_destroy"
 end

@@ -213,7 +213,7 @@ body {
   background-color: #fff2e5;
 }
 
-#product1 {
+#products {
   text-align: center;
 }
 
@@ -858,7 +858,7 @@ footer .copyright {
   flex: 1 1 calc(20% - 20px);
   max-width: calc(20% - 20px);
   text-align: center;
-  color: #333;
+  color: #fff;
   text-decoration: none;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -895,7 +895,6 @@ footer .copyright {
 
 #products .pro-container {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
   padding-top: 20px;
 }
@@ -909,7 +908,7 @@ footer .copyright {
   border-radius: 25px;
   cursor: pointer;
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
-  margin: 15px 0;
+  margin: 15px 10px;
   transition: 0.2s ease;
 }
 
@@ -1022,8 +1021,8 @@ footer .copyright {
   margin-bottom: 15px;
 }
 
-#prodetails .single-pro-details input {
-  width: 50px;
+#prodetails .single-pro-details .normal1 {
+  width: 115px;
   height: 47px;
   padding-left: 10px;
   font-size: 16px;
@@ -1140,7 +1139,6 @@ footer .copyright {
 #subtotal {
   width: 50%;
   margin-bottom: 30px;
-  border: 1px solid #e2e9e1;
   padding: 30px;
 }
 
@@ -1379,7 +1377,7 @@ color: #fff;
 
 .normal1{
   color: #fff;
-  padding: 15px 30px;
+  padding: 10px 20px;
   font-weight: 400;
   font-size: 14px;
   border-radius: 4px;
@@ -1395,4 +1393,19 @@ color: #fff;
 .normal1:hover {
   background-color: #0056b3;
   color: #fff;
+}
+.text_field{
+  /*padding: 10px;*/
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.text_field label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+#cart-items td {
+  padding: 15px;
 }

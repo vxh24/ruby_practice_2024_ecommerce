@@ -1,0 +1,35 @@
+<section id="page-header" class="about-header">
+  <h1 style="color: #000">Order</h1>
+  <p style="color: #000">Buy What You Want.</p>
+</section>
+
+<section id="cart" class="section-p1">
+  <table width="100%">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Total</td>
+        <td>Date order</td>
+        <td>Status</td>
+        <td>Payment_option</td>
+        <td>Action</td>
+      </tr>
+    </thead>
+    <tbody id="cart-items">
+      <% @orders.each do |order| %>
+      <tr>
+        <td>DH<%= order.id %></td>
+        <td><%= order.total_price %></td>
+        <td><%= order.date_place_order.strftime("%d-%m-%Y") %></td>
+        <td><%= order.status %></td>
+        <td>$<%= order.payment_option %></td>
+        <td>
+          <%= link_to "Xem chi tiết".html_safe, order_show_path(order), class: "normal1" %>
+
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <hr class="mb-4">
+</section>

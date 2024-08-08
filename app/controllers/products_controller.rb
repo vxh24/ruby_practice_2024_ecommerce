@@ -6,8 +6,13 @@ class ProductsController < ApplicationController
       @products = @products.search_by_name(params[:query])
       session[:query] = params[:query]
     end
-    if params[:price_filter].present? && session[:query].present?
-      @products = filter_by_price(@products.search_by_name(session[:query]), params[:price_filter])
+    if params[:price_filter].present?
+      if session[:query].present?
+        @products = filter_by_price(@products.search_by_name(session[:query]), params[:price_filter])
+        session[:query] = nil
+      else
+        @products = filter_by_price(@products,params[:price_filter])
+      end
     end
     @pagy, @paginated_products = pagy @products, limit: Settings.digist.digist_10
     @total_count = @products.size

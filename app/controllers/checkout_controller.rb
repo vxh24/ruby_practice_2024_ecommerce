@@ -25,8 +25,8 @@ class CheckoutController < ApplicationController
           )
           item.destroy
         end
-        flash[:notice] = "Order was successfully placed."
-        redirect_to root_path
+        flash[:success] = "Order was successfully placed."
+        redirect_to order_index_path
       else
         render :new
       end
